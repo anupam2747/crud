@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Member extends Model
 {
     use HasFactory;
+    function companydata()
+    {
+        return $this->hasOne('App\Models\Company');
+    }
     function getNameAttribute($value)
     {
         return ucfirst($value);

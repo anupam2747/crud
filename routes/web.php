@@ -5,17 +5,7 @@ use App\http\Controllers\Home;
 use App\http\Controllers\Editcontroller;
 use App\http\Controllers\UpdateController;
 use App\http\Controllers\MemberController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\http\Controllers\FileuploadController;
 
 Route::get('/', function () {
     return view('home');
@@ -27,3 +17,5 @@ Route::get('editdetails/{id}',[Editcontroller::class,'editdata'])->name('editdat
 Route::get('edit/{id}',[Editcontroller::class,'edit'])->name('edit');
 Route::post('formupdate/{id}',[UpdateController::class,'updatedata'])->name('formupdate');
 Route::get('member',[MemberController::class,'index']);
+Route::view('upload','upload');
+Route::post('fileupload',[FileuploadController::class,'fileupload'])->name('fileupload');

@@ -10,7 +10,8 @@ class MemberController extends Controller
 
      function index()
      {
-         return Member::all();
+         return Member::find(1)->companydata;
      }
+
      
 }

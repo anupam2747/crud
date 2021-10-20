@@ -9,4 +9,9 @@ class Myuser extends Model
 {
     use HasFactory;
     public $timestamps=false;
+    function setFirstnameAttribute($value)
+    {
+        return $this->attributes['firstname']="Mr.".$value;
+    }
 }
+ 

@@ -10,6 +10,7 @@ use App\http\Controllers\FileuploadController;
 Route::get('/', function () {
     return view('home');
 });
+
 Route::POST('formsubmit',[Home::class,'getdata'])->name('formsubmit');
 Route::get('showdata',[Home::class,'show'])->name('showdata');
 Route::delete('deletedetails/{id}',[Home::class,'deletedata'])->name('deletedata.index');
@@ -17,5 +18,13 @@ Route::get('editdetails/{id}',[Editcontroller::class,'editdata'])->name('editdat
 Route::get('edit/{id}',[Editcontroller::class,'edit'])->name('edit');
 Route::post('formupdate/{id}',[UpdateController::class,'updatedata'])->name('formupdate');
 Route::get('member',[MemberController::class,'index']);
-Route::view('upload','upload');
+Route::view('upload','upload'); //ye mat use kara karo
 Route::post('fileupload',[FileuploadController::class,'fileupload'])->name('fileupload');
+Route::view('noaccess','noaccess');
+
+// Route::group(['middleware'=>['token']],function(){
+//     Route::view('user','home');
+//     Route::view('member','home');
+
+// });
+// Route::view('user','home')->middlewa;

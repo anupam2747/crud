@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
 use ImageResize;
 use App\Models\Upload;
 
@@ -18,20 +17,20 @@ class FileuploadController extends Controller
 
         if($request->file('file'))
         {
-         
+            $filename=$request->file->getClientOriginalName();
             $image = $request->file('file');
             $input['product_image'] = time() . '.' . $image->extension();
     
-            // $thumbnailFilePath = public_path('thumbnails');
-            $thumbnailFilePath = 'thumbnails';
+            $thumbnailFilePath = public_path('thumbnails');
+            // $thumbnailFilePath = 'thumbnails';
     
             $img = ImageResize::make($image->path());
             $img->resize(110, 110, function ($const) {
                 $const->aspectRatio();
             })->save($thumbnailFilePath . '/' . $input['product_image']);
-
-            // $ImageFilePath = public_path('images');
-            $ImageFilePath = 'images';
+            
+            $ImageFilePath = public_path('images');
+            // $ImageFilePath = 'images';
 
             $image->move($ImageFilePath, $input['product_image']);
     
@@ -51,9 +50,9 @@ class FileuploadController extends Controller
             // $product->thumbnail='img/thumbnails'.$filename;
 			// $product->save();
        
-            // return back()
-            //     ->with('success','Image Upload successful')
-            //     ->with('imageName',$filename);
+            return back()
+                ->with('success','Image Upload successful')
+                ->with('imageName',$filename);
 
         }
     }
